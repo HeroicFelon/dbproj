@@ -1,6 +1,6 @@
 # Implementation Plan
 
-This document outlines the step-by-step implementation plan for the Automated Research and Database Enhancement System. Each step is designed to be small, focused, and testable, ensuring steady progress toward the final system. The plan prioritizes core functionality—article collection, database enhancement, and a basic user interface—before adding advanced features.
+This document outlines the step-by-step implementation plan for the Automated Research and Database Enhancement System. Each step is designed to be small, focused, and testable, ensuring steady progress and maintainability. This version uses **crawl4ai** for web scraping and crawling functionalities.
 
 ---
 
@@ -16,11 +16,11 @@ This document outlines the step-by-step implementation plan for the Automated Re
 
 The Article Collection Module automates fetching articles from various sources, forming the foundation of the system by providing data for processing.
 
-### Step 1: Set up a basic web scraper using Scrapy
+### Step 1: Set up a basic web crawler using crawl4ai
 
-- **Task**: Create a Scrapy spider to fetch articles from a single website (e.g., a news site).
+- **Task**: Create a crawl4ai spider to fetch articles from a single website (e.g., a news site).
 - **Implementation**:
-  - Define a spider to extract article titles, URLs, and content.
+  - Define a crawl4ai spider (Python class or YAML config) to extract article titles, URLs, and content asynchronously.
   - Save fetched articles as text files in a local directory (e.g., `articles/`).
 - **Test**:
   - Run the spider and verify that articles are saved in the local directory.
@@ -52,7 +52,7 @@ The Article Collection Module automates fetching articles from various sources, 
 
 - **Task**: Schedule fetching tasks to run daily.
 - **Implementation**:
-  - Use Python’s `schedule` library to run the scraper, RSS parser, and API fetcher periodically.
+  - Use Python’s `schedule` library to run the crawl4ai spider, RSS parser, and API fetcher periodically.
   - Ensure compatibility with all sources.
 - **Test**:
   - Set up a daily schedule.
@@ -204,4 +204,4 @@ The User Interface enables interaction with the database and viewing of insights
 
 ---
 
-This plan ensures incremental development with testable steps, adhering to the modularity rule (files < 500 lines) and focusing on core functionality first. Additional features like multilingual support can be added later.
+This plan ensures incremental development with testable steps, adhering to the modularity rule (files < 500 lines) and focusing on core functionality first. Additional features like multilingual support and advanced analytics can be added in future iterations.

@@ -2,11 +2,11 @@
 
 ## 1. Introduction
 
-This document outlines the requirements for a system designed to automate the research and collection phase of your workflow, while enhancing your private database with advanced functionalities. You currently read dozens of science and technology articles daily and save them manually. The goal is to streamline this process and add intelligent features like sentiment analysis, classification, named entity recognition, keyword extraction, EEI identification, and AI-assisted lead and research plan generation.
+This document outlines the requirements for a system designed to automate the research and collection phase of your workflow, while enhancing your private database with advanced functionalities. You can use this as a reference for implementation and further feature planning.
 
 ## 2. Current Workflow
 
-You conduct online research on developments in science and technology, reading dozens of articles daily from various online sources and saving them to a private database. This manual process is time-consuming, and you seek to automate it while adding advanced analytical capabilities.
+You conduct online research on developments in science and technology, reading dozens of articles daily from various online sources and saving them to a private database. This manual process is time-consuming and difficult to scale as your interests and information sources grow.
 
 ## 3. System Overview
 
@@ -20,7 +20,7 @@ The system will consist of three main components:
 
 ### 4.1 Article Collection Module
 - Automatically fetch articles from user-defined sources (e.g., websites, RSS feeds, APIs).
-- Support multiple sources with the ability to easily add new ones.
+- Use **crawl4ai** for web crawling and scraping, supporting multiple sources and easy extensibility for new sites.
 - Schedule fetching at regular intervals (e.g., daily) to keep the database up-to-date.
 - Handle different formats (HTML, PDF, etc.) and extract clean text content for processing.
 
@@ -46,7 +46,8 @@ The system will consist of three main components:
 ## 5. Non-Functional Requirements
 
 ### 5.1 Performance
-- Utilize multi-threading or parallel processing to handle large volumes of articles efficiently.
+- Utilize asynchronous crawling with crawl4ai to efficiently handle large volumes of articles.
+- Leverage multi-threading or parallel processing for additional tasks.
 - Leverage GPU acceleration (via your Nvidia RTX 5080) for machine learning and NLP tasks where applicable.
 - Ensure fast database queries and processing, even with a growing number of articles.
 
@@ -73,6 +74,10 @@ The system will consist of three main components:
 
 ### 6.2 Software Stack
 - **Programming Language**: Python 3.x – Ideal for its rich ecosystem of NLP and machine learning libraries.
+- **Web Crawling**: 
+  - **crawl4ai** – For modern, async-based, modular web crawling and scraping.
+  - **feedparser** – For parsing RSS feeds.
+  - **requests** – For HTTP/API requests.
 - **Database**: 
   - **Elasticsearch** – For powerful full-text search and scalability.
   - **PostgreSQL** – Alternative with full-text search capabilities for structured data.
@@ -80,9 +85,9 @@ The system will consist of three main components:
   - **SpaCy** – For NER and sentiment analysis.
   - **NLTK** or **TextBlob** – For additional NLP tasks.
   - **Scikit-learn** – For topic classification.
-- **Web Scraping**: 
-  - **BeautifulSoup** – For simple HTML parsing.
-  - **Scrapy** – For robust, scheduled scraping of multiple sources.
+- **Web Scraping Utilities**: 
+  - **BeautifulSoup** – For HTML parsing.
+  - **pdfplumber** – For PDF text extraction.
 - **Machine Learning/LLM**: 
   - **PyTorch** – For GPU-accelerated models (e.g., classification, LLM tasks).
   - **Pre-trained Models** – BERT or smaller LLMs suitable for local execution with 16 GB VRAM.
@@ -104,4 +109,4 @@ The system will consist of three main components:
 
 ---
 
-This document provides a starting point for your project. It leverages your powerful hardware to enable efficient automation and advanced features, ensuring your research process becomes more streamlined and insightful. Please let me know if you'd like to refine any section or add specific details!
+This document provides a starting point for your project. It leverages your powerful hardware to enable efficient automation and advanced features, ensuring your research process becomes more streamlined and insightful.
